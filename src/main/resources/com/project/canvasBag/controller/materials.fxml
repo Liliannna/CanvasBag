@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="content" prefHeight="700.0" prefWidth="920.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.canvasBag.controller.MaterialsController">
+   <left>
+      <VBox fx:id="menu" prefHeight="700.0" prefWidth="170.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="15.0" prefWidth="170.0" />
+            <Label onMouseClicked="#onMouseClickedFabric" prefHeight="35.0" prefWidth="170.0" text="Ткань">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label onMouseClicked="#onMouseClickedAccessories" prefHeight="35.0" prefWidth="170.0" text="Фурнитура">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label onMouseClicked="#onMouseClickedTape" prefHeight="35.0" prefWidth="170.0" text="Стропа/Лента">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label onMouseClicked="#onMouseClickedZipper" prefHeight="35.0" prefWidth="170.0" text="Молния">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label onMouseClicked="#onMouseClickedLeather" prefHeight="35.0" prefWidth="170.0" text="Кожа/Замша">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

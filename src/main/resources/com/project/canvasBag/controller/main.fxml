@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="main" minHeight="700.0" minWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.canvasBag.controller.MainController">
+   <left>
+      <VBox fx:id="mainMenu" prefHeight="700.0" prefWidth="80.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <Pane prefHeight="25.0" prefWidth="80.0"/>
+         <ImageView fx:id="material" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#onMouseClickedMaterial"
+                    onMouseEntered="#onMouseEnteredMaterial" pickOnBounds="true" preserveRatio="true">
+            <VBox.margin>
+               <Insets left="7.5"/>
+            </VBox.margin>
+            <image>
+               <Image url="@../icons/materials.png"/>
+            </image>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </ImageView>
+         <ImageView fx:id="model" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#onMouseClickedModel"
+                    onMouseEntered="#onMouseEnteredModel" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../icons/models.png"/>
+            </image>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+            <VBox.margin>
+               <Insets left="7.5"/>
+            </VBox.margin>
+         </ImageView>
+         <ImageView fx:id="product" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#onMouseClickedProduct"
+                    onMouseEntered="#onMouseEnteredProduct" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../icons/tag1.png"/>
+            </image>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+            <VBox.margin>
+               <Insets left="7.5"/>
+            </VBox.margin>
+         </ImageView>
+         <ImageView fx:id="order" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#onMouseClickedOrder"
+                    onMouseEntered="#onMouseEnteredOrder" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../icons/orders.png"/>
+            </image>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+            <VBox.margin>
+               <Insets left="7.5"/>
+            </VBox.margin>
+         </ImageView>
+         <ImageView fx:id="graph" fitHeight="65.0" fitWidth="65.0" onMouseClicked="#onMouseClickedGraph"
+                    onMouseEntered="#onMouseEnteredGraph" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../icons/graph.png"/>
+            </image>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+            <VBox.margin>
+               <Insets left="7.5"/>
+            </VBox.margin>
+         </ImageView>
+      </VBox>
+   </left>
+</BorderPane>

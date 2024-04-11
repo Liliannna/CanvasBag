@@ -1,0 +1,40 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{dd.MM.yyyy | HH:mm:ss.SSS} | %-5p | [%t] | %c: %m%n
+            </Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="canvasBag"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>canvasBag.log</File>
+        <Append>true</Append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{dd.MM.yyyy | HH:mm:ss.SSS} | %-5p | [%t] | %c: %m%n
+            </Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>test.%i.log.gz</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>5MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <logger name="com.project.canvasBag" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.type.descriptor.sql" level="TRACE"/>
+    <logger name="org.springframework.orm" level="DEBUG"/>
+    <logger name="org.springframework.context" level="DEBUG"/>
+
+    <root level="ERROR">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="canvasBag"/>
+    </root>
+
+</configuration>

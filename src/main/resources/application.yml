@@ -1,0 +1,22 @@
+spring:
+  main:
+    web-application-type: none
+  datasource:
+    generate-unique-name: false
+    name: canvasBag
+    username: admin
+    password: admin
+    url: jdbc:h2:file:./canvasBag;DB_CLOSE_ON_EXIT=true;IFEXISTS=false;DB_CLOSE_DELAY=-1;
+    initialize: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+
+app:
+  title: CanvasBag
+
+
+
+
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane fx:id="borderPaneTape" prefHeight="700.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.canvasBag.controller.material.TapeController">
+   <bottom>
+      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label id="searchLabel" layoutX="25.0" layoutY="10.0" prefHeight="25.0" prefWidth="51.0" text="Поиск" />
+            <TextField fx:id="searchTextField" layoutX="75.0" layoutY="10.0" prefHeight="25.0" prefWidth="600.0" />
+         </children>
+      </Pane>
+   </bottom>
+   <center>
+      <TableView fx:id="tapeTable" prefHeight="650.0" prefWidth="750.0" stylesheets="@../../css/table.css" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="25.0" text="id" visible="false" />
+            <TableColumn fx:id="name" minWidth="25.0" prefWidth="125.0" text="Наименование" />
+            <TableColumn fx:id="comment" minWidth="25.0" prefWidth="125.0" text="Комментарий" />
+            <TableColumn fx:id="color" minWidth="25.0" prefWidth="125.0" text="Цвет" />
+            <TableColumn fx:id="width" minWidth="25.0" prefWidth="125.0" text="Ширина (мм.)" />
+            <TableColumn fx:id="remainder" minWidth="25.0" prefWidth="125.0" text="Остаток (м.)" />
+            <TableColumn fx:id="price" minWidth="25.0" prefWidth="125.0" text="Цена (1м.)" />
+         </columns>
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#addTape" text="Добавить" />
+                  <MenuItem fx:id="deleteContext" mnemonicParsing="false" onAction="#deleteTape" text="Удалить" visible="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteAllTape" text="Очистить таблицу" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
+</BorderPane>

@@ -8,9 +8,9 @@ import com.project.canvasBag.model.Fabric;
 import com.project.canvasBag.model.MaterialType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.imgscalr.Scalr;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,49 +23,62 @@ public class FabricConvert {
         fabric.setName(newFabric.getName());
         fabric.setColor(newFabric.getColor());
         fabric.setRemainder((Double.parseDouble(newFabric.getWidth()) * Double.parseDouble(newFabric.getLength())) / 100);
-        fabric.setThickness(Integer.parseInt(newFabric.getThickness()));
+        if(newFabric.getThickness() != null){
+            fabric.setThickness(Integer.parseInt(newFabric.getThickness()));
+        }
         fabric.setPrice(Double.parseDouble(newFabric.getPrice()));
         fabric.setComment(newFabric.getComment());
         fabric.setType(MaterialType.FABRIC);
-
-        System.out.println(newFabric.getURLImage());
+        //генерируем рандомное имя для изображения
         String fileName = GeneratorRandomNameFile.generatorNameFile();
-        File file = new File(newFabric.getURLImage());
-        System.out.println(file);
+        //загружаем изображение
         BufferedImage input = ImageIO.read(new File(newFabric.getURLImage()));
-        System.out.println(input);
         if (input != null) {
-            File outputFile = new File("src/main/resources/com/project/canvasBag/image/" + fileName);
+            input = resizeImage(input);
+            File outputFile = new File("src/main/resources/com/project/canvasBag/image/fabric/" + fileName);
             ImageIO.write(input, "PNG", outputFile);
             fabric.setNameFile(fileName);
         } else {
-            fabric.setNameFile("noImage.png");
-            //throw new AppException(ErrorField.INVALID_FILE);
+            fabric.setNameFile("noImage");
         }
         return fabric;
     }
 
     public static Iterable<FabricTableResponse> convertFabricToFabricTableResponse(Iterable<Fabric> fabrics) throws IOException {
         List<FabricTableResponse> fabricTableResponseList = new ArrayList<>();
-        for (Fabric fabric : fabrics) {
-            FabricTableResponse fabricTableResponse = new FabricTableResponse();
-            fabricTableResponse.setId(fabric.getId());
-            fabricTableResponse.setName(fabric.getName());
-            fabricTableResponse.setRemainder(fabric.getRemainder());
-            fabricTableResponse.setThickness(fabric.getThickness());
-            fabricTableResponse.setColor(fabric.getColor());
-            fabricTableResponse.setComment(fabric.getComment());
 
-            ImageView image = new ImageView();
-            image.setFitHeight(50);
-            image.setFitWidth(50);
-            System.out.println(fabric.getNameFile());
-            image.setImage(new Image("com/project/canvasBag/image/" + fabric.getNameFile()));
-            fabricTableResponse.setImage(image);
+            for (Fabric fabric : fabrics) {
+                FabricTableResponse fabricTableResponse = new FabricTableResponse();
+                fabricTableResponse.setId(fabric.getId());
+                fabricTableResponse.setName(fabric.getName());
+                fabricTableResponse.setRemainder(fabric.getRemainder());
+                fabricTableResponse.setThickness(fabric.getThickness());
+                fabricTableResponse.setColor(fabric.getColor());
+                fabricTableResponse.setComment(fabric.getComment());
 
-            fabricTableResponseList.add(fabricTableResponse);
-        }
+                ImageView image = new ImageView();
+                image.setFitHeight(50);
+                image.setFitWidth(50);
+                //TODO при добавлении новых елементов в таблицу не загружаются новые изображения, пока не перезагрузишь приложение
+                try {
+                    if(!fabric.getNameFile().equals("noImage")){
+                    image.setImage(new Image("com/project/canvasBag/image/fabric/" + fabric.getNameFile()));
+
+                    } else {
+                        image.setImage(new Image("com/project/canvasBag/image/noImage.png"));
+                    }
+                    fabricTableResponse.setImage(image);
+                } catch (Exception e){
+                    System.out.println(fabric.getNameFile());
+                }
+                fabricTableResponseList.add(fabricTableResponse);
+            }
+
 
         return fabricTableResponseList;
+    }
+
+    private static BufferedImage resizeImage(BufferedImage image){
+        return Scalr.resize(image,400);
     }
 }

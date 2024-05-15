@@ -1,7 +1,6 @@
 package com.project.canvasBag.controller.material;
 
 import com.project.canvasBag.Config;
-import com.project.canvasBag.controller.ErrorController;
 import com.project.canvasBag.dto.request.AddNewFabricDtoRequest;
 import com.project.canvasBag.erroritem.exception.AppException;
 import com.project.canvasBag.service.FabricService;
@@ -15,13 +14,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -33,7 +30,6 @@ public class NewFabricController {
 
     private final FabricService service;
 
-    private File fileSave;
     private Stage stage;
 
     public NewFabricController(FabricService service) {
@@ -91,7 +87,7 @@ public class NewFabricController {
     void downloadFile() throws IOException {
         //Загружаем изображение
         FileChooser fileChooser = new FileChooser();
-        fileSave = fileChooser.showOpenDialog(stage);
+        File fileSave = fileChooser.showOpenDialog(stage);
         file.setText(fileSave.getAbsolutePath());
     }
 
@@ -114,6 +110,7 @@ public class NewFabricController {
                 }
                 newFabric.setComment(comment.getText());
                 newFabric.setPrice(price.getText());
+                //TODO если нет url возникает исключение, сделать возможность сохранения без файла
                 newFabric.setURLImage(file.getText());
                 service.save(newFabric);
 
@@ -132,7 +129,7 @@ public class NewFabricController {
                     e.getErrorField().getMessage());
             alert.showAndWait();
         } catch (IOException e) {
-            successLabel.setText("Не удалось загрузить файл!");
+            successLabel.setText(e.getMessage());
             successLabel.setStyle("-fx-text-fill: RED");
         }
     }

@@ -37,4 +37,7 @@ public interface FabricRepository extends PagingAndSortingRepository<Fabric, Lon
     @Modifying
     @Query(value = "UPDATE Fabric SET nameFile = ?2 WHERE id = ?1")
     void updateFabricFileName(Long id, String nameFile);
+
+    @Query(value = "SELECT nameFile FROM Fabric WHERE id = ?1")
+    String getNameFile(Long id);
 }

@@ -31,9 +31,11 @@ public class ValidatorFabric {
             logger.debug("Invalid length - {}", newFabric.getLength());
             throw new AppException(ErrorField.INVALID_LENGTH);
         }
-        if(!newFabric.getThickness().matches(Config.regexNumber)){
-            logger.debug("Invalid thickness - {}", newFabric.getThickness());
-            throw new AppException(ErrorField.INVALID_THICKNESS);
+        if(newFabric.getThickness() != null){
+            if(!newFabric.getThickness().matches(Config.regexNumber)){
+                logger.debug("Invalid thickness - {}", newFabric.getThickness());
+                throw new AppException(ErrorField.INVALID_THICKNESS);
+            }
         }
         if(!newFabric.getPrice().matches(Config.regexDouble)){
             logger.debug("Invalid price - {}", newFabric.getPrice());

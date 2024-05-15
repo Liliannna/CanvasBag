@@ -1,9 +1,7 @@
 package com.project.canvasBag.controller.material;
 
 import com.project.canvasBag.Config;
-import com.project.canvasBag.dto.request.DeleteFabricRequest;
 import com.project.canvasBag.dto.response.FabricTableResponse;
-import com.project.canvasBag.model.Fabric;
 import com.project.canvasBag.service.FabricService;
 import com.project.canvasBag.converter.CustomDoubleStringConverter;
 import com.project.canvasBag.converter.CustomIntegerStringConverter;
@@ -272,6 +270,7 @@ public class FabricController {
         fabricTable.setItems(sortedList);
     }
 
+    //TODO java.lang.reflect.InvocationTargetException выяснить причину и устранить
     private void refreshTable() throws IOException {
         fabrics.clear();
         service.getAllFabric().forEach(fabrics::add);

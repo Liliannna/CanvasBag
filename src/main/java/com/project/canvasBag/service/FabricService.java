@@ -30,16 +30,24 @@ public class FabricService {
     }
 
     public Iterable<FabricTableResponse> getAllFabric() throws IOException {
-        System.out.println("fabric service");
         return FabricConvert.convertFabricToFabricTableResponse(repository.findAll());
     }
 
     public void deleteById(Long id) {
+        String fileName = repository.getNameFile(id);
         repository.deleteById(id);
+        logger.info("Delete fabric id - {}", id);
+        if(!fileName.equals("noImage")){
+            File file = new File("src/main/resources/com/project/canvasBag/image/fabric/" + fileName);
+            boolean status = file.delete();
+            logger.info("Delete file - {}, status - {}", fileName, status);
+        }
     }
 
+    //TODO удалять все изображения тканей при их удалении
     public void deleteAll() {
         repository.deleteAll();
+        logger.debug("Delete allFabric");
     }
 
     public void updateFabricName(Long id, String name) {
